@@ -10,7 +10,7 @@ import { filterImageFromURL, deleteLocalFiles } from './util/util';
   const app = express();
 
   // Set the network port
-  const port = process.env.PORT || 8082;
+  const port = process.env.PORT || 8080;
 
   // Use the body parser middleware for post requests
   app.use(bodyParser.json());
@@ -22,6 +22,12 @@ import { filterImageFromURL, deleteLocalFiles } from './util/util';
   app.get("/", async (req, res) => {
     res.send("/api/v0/");
     //    res.send("try GET /filteredimage?image_url={{}}")
+  });
+
+  app.get("/vwacdest", async (req, res) => {
+    console.log(req.body);
+    console.log(req.ip);
+    res.status(200).send({ requestBody: req.body, message: "test", sourceip: req.ip })
   });
 
 
